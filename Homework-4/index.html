@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Crystal Collector</title>
+  <link href="https://fonts.googleapis.com/css?family=Patua+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="jumbotron text-center">
+    <h1>Crystal Collector</h1></div>
+
+
+    <div class="row">
+      <div class="col-sm-9">
+        <h2>You need to find: <span id="scoreToMatch"></span></h2>
+      </div>
+    <div class="col-sm-3">
+        <h3>Wins: <span id="wins"></span></h3>
+        <h3 class="text-left">Losses: <span id="losses"></span></h3>
+      </div>
+    </div>
+
+      <div class="row text-center">
+        <div class="col-sm-3">
+        <img src="red_crystal.png" class="img-thumnail red" alt="Red Crystal" width="200" height="200" />
+        </div>
+        <div class="col-sm-3">
+        <img src="Blue_Crystal.png" class="img-thumbnail blue" alt="Blue Crystal" width="200" height="200" />
+        </div>
+        <div class="col-sm-3">
+        <img src="Yellow_Crystal.png" class="img-thumnail yellow" alt="Yellow Crystal" width="200" height="200" />
+        </div>
+        <div class="col-sm-3">
+          <img src="Green-Crystal.png" class="img-thumnail green" alt="Green Crystal" width="200" height="200" />
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+      <h2>So far you have: <span id="totalScore"></span></h2>
+      </div>
+    </div>
+    </div>
+<Script>
+ $( document ).ready(function(){
+  // Generates random number to guess
+  var Random=Math.floor(Math.random()*102+19)
+  
+  // Display random number
+  $('#scoreToMatch').text(Random);
+  
+  //Generate random number for each crystal
+  var num1= Math.floor(Math.random()*12+1)
+  var num2= Math.floor(Math.random()*12+1)
+  var num3= Math.floor(Math.random()*12+1)
+  var num4= Math.floor(Math.random()*12+1)
+  
+  // Variables to keep track of wins, losses and total
+  var playerTotal= 0; 
+  var wins= 0;
+  var losses = 0;
+  
+
+$('#wins').text(wins);
+$('#losses').text(losses);
+
+// Reset game
+function reset(){
+      Random=Math.floor(Math.random()*102+19);
+      console.log(Random)
+      $('#scoreToMatch').text(Random);
+      num1= Math.floor(Math.random()*12+1);
+      num2= Math.floor(Math.random()*12+1);
+      num3= Math.floor(Math.random()*12+1);
+      num4= Math.floor(Math.random()*12+1);
+      playerTotal= 0;
+      $('#totalScore').text(playerTotal);
+      } 
+// Display wins
+function woohoo(){
+alert("Right on the money! +1 Win");
+  wins++; 
+  $('#wins').text(wins);
+  reset();
+}
+// Display losses
+function loser(){
+alert ("You can't take all of those crystals with you! +1 Loss");
+  losses++;
+  $('#losses').text(losses);
+  reset()
+}
+// Clicking crystals
+  $('.red').on ('click', function(){
+    playerTotal = playerTotal + num1;
+    console.log("New playerTotal= " + playerTotal);
+    $('#totalScore').text(playerTotal); 
+          //Win & lose conditions
+        if (playerTotal == Random){
+          woohoo();
+        }
+        else if ( playerTotal > Random){
+          loser();
+        }   
+  })  
+  $('.blue').on ('click', function(){
+    playerTotal = playerTotal + num2;
+    console.log("New playerTotal= " + playerTotal);
+    $('#totalScore').text(playerTotal); 
+        if (playerTotal == Random){
+          woohoo();
+        }
+        else if ( playerTotal > Random){
+          loser();
+        } 
+  })  
+  $('.yellow').on ('click', function(){
+    playerTotal = playerTotal + num3;
+    console.log("New playerTotal= " + playerTotal);
+    $('#totalScore').text(playerTotal);
+
+          if (playerTotal == Random){
+          woohoo();
+        }
+        else if ( playerTotal > Random){
+          loser();
+        } 
+  })  
+  $('.green').on ('click', function(){
+    playerTotal = playerTotal + num4;
+    console.log("New playerTotal= " + playerTotal);
+    $('#totalScore').text(playerTotal); 
+      
+          if (playerTotal == Random){
+          woohoo();
+        }
+        else if ( playerTotal > Random){
+          loser();
+        }
+  });   
+}); 
+</Script>
+
+</body>
+<!-- JS -->
+<script src="assets/javascript/game.js"></script> 
+</html>
